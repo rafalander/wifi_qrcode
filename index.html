@@ -3,27 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>WQRCODE</title>
 </head>
+
+<style>
+.tooltip-icon {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: 5px;
+  position: relative;
+  user-select: none;
+}
+
+.tooltip-content {
+  display: none; /* agora visibilidade controlada por clique */
+  width: 100%;
+  background: #f0f2f8;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 6px;
+  margin-top: 8px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+  margin-bottom: 20px;
+}
+</style>
+
 <body>
     <div class="container mt-5 w-25">
         <div class="text-center mb-4">
             <img src="images/wqrcode.png" alt="auto" class="img-fluid" style="max-width: 150px; height: auto;">
         </div>
+
         <form id="wifiForm">
             <div class="mb-3">
                 <label for="connection" class="form-label">Nome da conexão</label>
-                <input type="connection" class="form-control" id="connection" aria-describedby="emailHelp">
-                <div id="" class="form-text">Digite o nome exato da conexão</div>
+                <input type="connection" class="form-control" id="connection">
+                <div class="form-text">Digite o nome exato da conexão</div>
             </div>
+
             <div class="mb-3">
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="password">
-                <div id="" class="form-text">Digite a senha da conexão</div>
+                <div class="form-text">Digite a senha da conexão</div>
             </div>
+
             <div class="mb-3">
-                <label for="securityType" class="form-label">Tipo de Segurança</label>
+                <label for="securityType" class="form-label">
+                    Tipo de Segurança
+                    <span class="tooltip-icon" id="securityInfoToggle">🛈</span>
+                </label>
+                <div class="tooltip-content" id="securityInfoBox">
+                    <p><strong>Onde encontrar essa informação?</strong></p>
+                    <p><a href="https://surfshark.com/pt-br/blog/chave-de-seguranca-da-rede" target="_blank">Clique aqui</a></p>
+                </div>
+
                 <select id="securityType" class="form-select">
                     <option>WPA (default)</option>
                     <option>WEP</option>
@@ -42,10 +76,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Criar QR Code</button>
-            </fieldset>
         </form>
-        
-        <!-- Container para exibir o QR Code -->
+
+        <!-- Container do QR Code -->
         <div id="qrcodeContainer" class="mt-4 text-center" style="display: none;">
             <h5 id="wifiNameDisplay">Seu QR Code WiFi:</h5>
             <canvas id="qrcode"></canvas>
@@ -57,6 +90,7 @@
     </div>
 
 </body>
+
 <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 <script src="script.js"></script>
 </html>

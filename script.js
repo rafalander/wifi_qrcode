@@ -44,3 +44,12 @@ document.getElementById('newQrBtn').addEventListener('click', function() {
     qrcodeContainer.style.display = 'none';
     form.reset();
 });
+
+    // Toggle do tooltip fixo
+    const toggleBtn = document.getElementById("securityInfoToggle");
+    const infoBox = document.getElementById("securityInfoBox");
+
+    toggleBtn.addEventListener("click", () => {
+        const isVisible = infoBox.style.display === "block";
+        infoBox.style.display = isVisible ? "none" : "block";
+    });
